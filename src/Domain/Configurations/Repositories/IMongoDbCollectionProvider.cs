@@ -4,6 +4,6 @@ namespace Domain.Configurations.Repositories;
 
 public interface IMongoDbCollectionProvider
 {
-    IMongoCollection<T> GetDbColection<T>()
+    IMongoCollection<T> GetDbCollection<T>()
         where T : AggregateRoot;
 }

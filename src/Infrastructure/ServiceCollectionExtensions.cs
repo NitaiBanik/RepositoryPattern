@@ -10,6 +10,7 @@ public static class ServiceCollectionExtensions
         this IServiceCollection services)
     {
         services.AddSingleton<IMongoDbCollectionProvider, MongoDbCollectionProvider>();
+        services.AddSingleton<IRepository, Repository>();
 
         return services;
     }

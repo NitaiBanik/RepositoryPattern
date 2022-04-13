@@ -15,7 +15,7 @@ internal class MongoDbCollectionProvider
     {
         _settings = settings;
     }
-    public IMongoCollection<T> GetDbColection<T>()
+    public IMongoCollection<T> GetDbCollection<T>()
         where T : AggregateRoot
     {
         var mogoClient = new MongoClient(_settings.Value.ConnectionString);
