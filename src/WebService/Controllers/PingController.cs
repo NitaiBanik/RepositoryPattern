@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace RepositoryPattern.Controllers;
+namespace WebService.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class PingController
+public class WeatherForecastController 
     : ControllerBase
 {
     [HttpGet("/ping", Name = "Ping")]
