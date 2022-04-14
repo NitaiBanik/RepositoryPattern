@@ -1,9 +1,9 @@
 ﻿using Domain;
-using Domain.Configurations.Repositories;
+using Domain.Configurations;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 
-namespace Infrastructure.Configurations.Repositories;
+namespace Infrastructure.Configurations;
 
 internal class MongoDbCollectionProvider
     : IMongoDbCollectionProvider
