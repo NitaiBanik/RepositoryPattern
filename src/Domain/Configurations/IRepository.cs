@@ -11,6 +11,9 @@ public interface IRepository
     Task SaveAsync<T>(T entity)
         where T : AggregateRoot;
 
+    Task UpdateAsync<T>(T entity)
+        where T : AggregateRoot;
+
     Task DeleteAsync<T>(string id)
         where T : AggregateRoot;
 }

@@ -29,6 +29,10 @@ public class LaptopRepository
         await _repository.SaveAsync(laptop);
     }
 
+    public async Task UpdateAsync(Laptop laptop)
+    {
+        await _repository.UpdateAsync(laptop);
+    }
     public async Task DeleteAsync(string id)
     {
         await _repository.DeleteAsync<Laptop>(id);

@@ -44,6 +44,16 @@ public class Repository
         await collection.InsertOneAsync(entity);
     }
 
+    public async Task UpdateAsync<T>(T entity)
+        where T : AggregateRoot
+    {
+        var collection = _mongoDbCollectionProvider
+            .GetDbCollection<T>();
+
+        await collection.ReplaceOneAsync(
+            e => e.ItemId == entity.ItemId, entity);
+    }
+
     public async Task DeleteAsync<T>(string id) where T : AggregateRoot
     {
         var collection = _mongoDbCollectionProvider

@@ -8,7 +8,7 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddRepositories(
         this IServiceCollection services)
     {
-        services.AddSingleton<ILaptopRepository, LaptopRepository>();
+        services.AddTransient<ILaptopRepository, LaptopRepository>();
 
         return services;
     }

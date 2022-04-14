@@ -49,7 +49,7 @@ public class LaptopsController
         return Ok(laoptop);
     }
 
-    [HttpDelete(Name = "DeleteLaptop")]
+    [HttpDelete("/{id}", Name = "DeleteLaptop")]
     public async Task<ActionResult> RemoveLaptopAsync(
         [FromRoute] string id)
     {
