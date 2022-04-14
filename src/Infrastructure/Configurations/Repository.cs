@@ -1,8 +1,8 @@
 ﻿using Domain;
-using Domain.Configurations.Repositories;
+using Domain.Configurations;
 using MongoDB.Driver;
 
-namespace Infrastructure.Configurations.Repositories;
+namespace Infrastructure.Configurations;
 
 public class Repository
     : IRepository
@@ -14,6 +14,7 @@ public class Repository
     {
         _mongoDbCollectionProvider = mongoDbCollectionProvider;
     }
+
     public async Task<IReadOnlyList<T>> GetAllAsync<T>()
         where T : AggregateRoot
     {
@@ -41,5 +42,14 @@ public class Repository
             .GetDbCollection<T>();
 
         await collection.InsertOneAsync(entity);
+    }
+
+    public async Task DeleteAsync<T>(string id) where T : AggregateRoot
+    {
+        var collection = _mongoDbCollectionProvider
+             .GetDbCollection<T>();
+
+        await collection.DeleteOneAsync(
+            e => e.ItemId == id);
     }
 }

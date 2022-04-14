@@ -1,5 +1,5 @@
-﻿using Domain.Configurations.Repositories;
-using Infrastructure.Configurations.Repositories;
+﻿using Domain.Configurations;
+using Infrastructure.Configurations;
 using Infrastructure.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,7 +12,7 @@ public static class ServiceCollectionExtensions
     {
         services.AddTransient<IMongoDbCollectionProvider, MongoDbCollectionProvider>();
         services.AddTransient<IRepository, Repository>();
-        
+
         services.AddRepositories();
 
         return services;

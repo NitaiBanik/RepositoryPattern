@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Configurations.Repositories;
+﻿namespace Infrastructure.Configurations;
 
 public class DatabaseSettings
 {

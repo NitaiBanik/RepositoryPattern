@@ -1,6 +1,6 @@
 ﻿using MongoDB.Driver;
 
-namespace Domain.Configurations.Repositories;
+namespace Domain.Configurations;
 
 public interface IMongoDbCollectionProvider
 {

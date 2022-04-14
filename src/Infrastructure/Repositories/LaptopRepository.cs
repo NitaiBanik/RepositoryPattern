@@ -1,4 +1,4 @@
-﻿using Domain.Configurations.Repositories;
+﻿using Domain.Configurations;
 using Domain.Laptops;
 
 namespace Infrastructure.Repositories;
@@ -27,5 +27,10 @@ public class LaptopRepository
     public async Task SaveAsync(Laptop laptop)
     {
         await _repository.SaveAsync(laptop);
+    }
+
+    public async Task DeleteAsync(string id)
+    {
+        await _repository.DeleteAsync<Laptop>(id);
     }
 }

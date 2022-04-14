@@ -48,4 +48,13 @@ public class LaptopsController
 
         return Ok(laoptop);
     }
+
+    [HttpDelete(Name = "DeleteLaptop")]
+    public async Task<ActionResult> RemoveLaptopAsync(
+        [FromRoute] string id)
+    {
+        await _laptopRepository.DeleteAsync(id);
+
+        return Ok();
+    }
 }
