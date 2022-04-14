@@ -1,5 +1,6 @@
 ﻿using Domain;
 using Domain.Configurations;
+using Microsoft.AspNetCore.JsonPatch;
 using MongoDB.Driver;
 
 namespace Infrastructure.Configurations;
@@ -52,6 +53,31 @@ public class Repository
 
         await collection.ReplaceOneAsync(
             e => e.ItemId == entity.ItemId, entity);
+    }
+
+    public async Task ModifyAsync<T>(string id, JsonPatchDocument<T> entity)
+        where T : AggregateRoot
+    {
+        var collection = _mongoDbCollectionProvider
+            .GetDbCollection<T>();
+
+        UpdateDefinition<T> update = null;
+
+        foreach (var x in entity.Operations)
+        {
+            if (update == null)
+            {
+                var builder = Builders<T>.Update;
+                update = builder.Set(x.path, x.value);
+            }
+            else
+            {
+                update = update.Set(x.path, x.value);
+            }
+        }
+
+        await collection.UpdateOneAsync(
+            e => e.ItemId == id, update);
     }
 
     public async Task DeleteAsync<T>(string id)

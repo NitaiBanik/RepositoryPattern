@@ -1,5 +1,6 @@
 ﻿using Domain.Configurations;
 using Domain.Laptops;
+using Microsoft.AspNetCore.JsonPatch;
 using System.Reflection;
 
 namespace Infrastructure.Repositories;
@@ -34,26 +35,12 @@ public class LaptopRepository
     {
         await _repository.UpdateAsync(laptop);
     }
-    public async Task ModifyAsync(string id, UpdatedLaptop updatedlaptop)
+
+    public async Task ModifyAsync(string id, JsonPatchDocument<Laptop> updatedLaptop)
     {
-        var laptop = await _repository.GetAsync<Laptop>(id);
-        if (laptop == null)
-        {
-            throw new InvalidOperationException(
-                $"Laptop not found with id: {id}");
-        }
-
-        foreach (PropertyInfo prop in updatedlaptop.GetType().GetProperties())
-        {
-            if (prop.GetValue(updatedlaptop) != null)
-            {
-                laptop.GetType().GetProperty(prop.Name)?.SetValue(laptop, prop.GetValue(updatedlaptop));
-            }
-        }
-
-        await _repository.UpdateAsync(laptop);
+        await _repository.ModifyAsync(id, updatedLaptop);
     }
-    
+
     public async Task DeleteAsync(string id)
     {
         await _repository.DeleteAsync<Laptop>(id);

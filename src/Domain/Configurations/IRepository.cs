@@ -1,4 +1,5 @@
 ﻿namespace Domain.Configurations;
+using Microsoft.AspNetCore.JsonPatch;
 
 public interface IRepository
 {
@@ -12,6 +13,9 @@ public interface IRepository
         where T : AggregateRoot;
 
     Task UpdateAsync<T>(T entity)
+        where T : AggregateRoot;
+
+    Task ModifyAsync<T>(string id, JsonPatchDocument<T> entity)
         where T : AggregateRoot;
 
     Task DeleteAsync<T>(string id)

@@ -21,19 +21,19 @@ public class Laptop : AggregateRoot
         MonitorSize = monitorSize;
     }
 
-    public string Brand { get; private set; }
+    public string Brand { get; set; }
     
-    public string Processor { get; private set; }
+    public string Processor { get; set; }
     
-    public string Generation { get; private set; }
+    public string Generation { get; set; }
     
-    public string Ram { get; private set; }
+    public string Ram { get; set; }
     
-    public string SSD { get; private set; }
+    public string SSD { get; set; }
     
-    public string Cache { get; private set; }
+    public string Cache { get; set; }
     
-    public string MonitorSize { get; private set; }
+    public string MonitorSize { get; set; }
 
     public void SetId(string id)
     {

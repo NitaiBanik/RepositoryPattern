@@ -79,9 +79,9 @@ public class LaptopsController
     [HttpPatch("/{id}", Name = "ModifyLaptop")]
     public async Task<ActionResult> ModiftLaptopAsync(
         [FromRoute] string id,
-        [FromBody] UpdatedLaptop updatedLaptop)
+        [FromBody] JsonPatchDocument<Laptop> laptop)
     {
-        await _laptopRepository.ModifyAsync(id, updatedLaptop);
+        await _laptopRepository.ModifyAsync(id, laptop);
         return Ok();
     }
 

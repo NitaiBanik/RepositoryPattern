@@ -1,4 +1,6 @@
-﻿namespace Domain.Laptops;
+﻿using Microsoft.AspNetCore.JsonPatch;
+
+namespace Domain.Laptops;
 
 public interface ILaptopRepository
 {
@@ -10,7 +12,7 @@ public interface ILaptopRepository
     
     Task UpdateAsync(Laptop laptop);
 
-    Task ModifyAsync(string id, UpdatedLaptop updatedlaptop);
+    Task ModifyAsync(string id, JsonPatchDocument<Laptop> laptop);
 
     Task DeleteAsync(string id);
 }
