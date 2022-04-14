@@ -2,6 +2,9 @@
 
 public interface IRepository
 {
+    Task<IReadOnlyList<T>> GetAllAsync<T>()
+        where T : AggregateRoot;
+    
     Task<T?> GetAsync<T>(string itemId)
         where T : AggregateRoot;
 

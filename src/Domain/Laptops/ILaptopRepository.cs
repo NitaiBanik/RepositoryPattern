@@ -2,6 +2,8 @@
 
 public interface ILaptopRepository
 {
+    Task<IReadOnlyList<Laptop>> GetAllAsync();
+        
     Task <Laptop?>GetAsync(string id);
     
     Task SaveAsync(Laptop laptop);

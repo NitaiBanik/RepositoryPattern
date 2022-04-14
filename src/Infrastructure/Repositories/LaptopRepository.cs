@@ -14,6 +14,11 @@ public class LaptopRepository
         _repository = repository;
     }
 
+    public async Task<IReadOnlyList<Laptop>> GetAllAsync()
+    {
+        return await _repository.GetAllAsync<Laptop>();
+    }
+
     public async Task<Laptop?> GetAsync(string id)
     {
         return await _repository.GetAsync<Laptop>(id);

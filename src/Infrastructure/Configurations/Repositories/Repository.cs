@@ -14,6 +14,16 @@ public class Repository
     {
         _mongoDbCollectionProvider = mongoDbCollectionProvider;
     }
+    public async Task<IReadOnlyList<T>> GetAllAsync<T>()
+        where T : AggregateRoot
+    {
+        var collection = _mongoDbCollectionProvider.GetDbCollection<T>();
+
+        return await collection
+            .Find(e => true)
+            .ToListAsync();
+    }
+
     public async Task<T?> GetAsync<T>(string itemId)
         where T : AggregateRoot
     {
