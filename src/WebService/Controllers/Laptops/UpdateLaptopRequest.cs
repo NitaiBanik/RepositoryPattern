@@ -1,6 +1,6 @@
 ﻿namespace WebService.Controllers.Laptops;
 
-public class AddLaptopRequest
+public class UpdateLaptopRequest
 {
     /// <summary>
     /// Brand name of the laptop

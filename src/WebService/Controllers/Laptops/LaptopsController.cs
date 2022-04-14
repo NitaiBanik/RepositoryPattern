@@ -32,10 +32,10 @@ public class LaptopsController
     }
 
     [HttpPost(Name = "AddLaptop")]
-    public async Task<ActionResult<Laptop>> AddLaptopAsync(
+    public async Task<ActionResult> AddLaptopAsync(
         [FromBody] AddLaptopRequest request)
     {
-        var laoptop = new Laptop(
+        var laptop = new Laptop(
             request.Brand,
             request.Processor,
             request.Generation,
@@ -44,10 +44,39 @@ public class LaptopsController
             request.Cache,
             request.MonitorSize);
 
-        await _laptopRepository.SaveAsync(laoptop);
+        await _laptopRepository.SaveAsync(laptop);
 
-        return Ok(laoptop);
+        return Ok();
     }
+
+    [HttpPut("/{id}", Name = "UpdateLaptop")]
+    public async Task<ActionResult> UpdateLaptopAsync(
+        [FromRoute] string id,
+        [FromBody] UpdateLaptopRequest request)
+    {
+        var laptop = await _laptopRepository.GetAsync(id);
+        if (laptop == null)
+        {
+            return NotFound();
+        }
+        
+        var newLaptop = new Laptop(
+            request.Brand,
+            request.Processor,
+            request.Generation,
+            request.Ram,
+            request.SSD,
+            request.Cache,
+            request.MonitorSize);
+
+        newLaptop.SetId(id);
+        
+
+        await _laptopRepository.UpdateAsync(newLaptop);
+
+        return Ok();
+    }
+
 
     [HttpDelete("/{id}", Name = "DeleteLaptop")]
     public async Task<ActionResult> RemoveLaptopAsync(

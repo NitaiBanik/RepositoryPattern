@@ -34,4 +34,9 @@ public class Laptop : AggregateRoot
     public string Cache { get; private set; }
     
     public string MonitorSize { get; private set; }
+
+    public void SetId(string id)
+    {
+        ItemId = id;
+    }
 }
