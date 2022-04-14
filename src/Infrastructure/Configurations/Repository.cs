@@ -54,7 +54,8 @@ public class Repository
             e => e.ItemId == entity.ItemId, entity);
     }
 
-    public async Task DeleteAsync<T>(string id) where T : AggregateRoot
+    public async Task DeleteAsync<T>(string id)
+        where T : AggregateRoot
     {
         var collection = _mongoDbCollectionProvider
              .GetDbCollection<T>();

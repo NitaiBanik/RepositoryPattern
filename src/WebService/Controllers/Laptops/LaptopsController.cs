@@ -1,4 +1,5 @@
 using Domain.Laptops;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebService.Controllers.Laptops;
@@ -59,7 +60,7 @@ public class LaptopsController
         {
             return NotFound();
         }
-        
+
         var newLaptop = new Laptop(
             request.Brand,
             request.Processor,
@@ -70,13 +71,19 @@ public class LaptopsController
             request.MonitorSize);
 
         newLaptop.SetId(id);
-        
-
         await _laptopRepository.UpdateAsync(newLaptop);
 
         return Ok();
     }
 
+    [HttpPatch("/{id}", Name = "ModifyLaptop")]
+    public async Task<ActionResult> ModiftLaptopAsync(
+        [FromRoute] string id,
+        [FromBody] UpdatedLaptop updatedLaptop)
+    {
+        await _laptopRepository.ModifyAsync(id, updatedLaptop);
+        return Ok();
+    }
 
     [HttpDelete("/{id}", Name = "DeleteLaptop")]
     public async Task<ActionResult> RemoveLaptopAsync(

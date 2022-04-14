@@ -10,5 +10,7 @@ public interface ILaptopRepository
     
     Task UpdateAsync(Laptop laptop);
 
+    Task ModifyAsync(string id, UpdatedLaptop updatedlaptop);
+
     Task DeleteAsync(string id);
 }
