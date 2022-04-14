@@ -61,7 +61,7 @@ public class Repository
         var collection = _mongoDbCollectionProvider
             .GetDbCollection<T>();
 
-        UpdateDefinition<T> update = null;
+        UpdateDefinition<T>? update = null;
 
         foreach (var x in entity.Operations)
         {
